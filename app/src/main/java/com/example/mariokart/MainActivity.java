@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
             String itemPrint = "";
             for (int i = 0; i < 22; i++){
-                itemPrint += itemNumber.charAt(i);
+                itemPrint += itemNumber.charAt(i) + " ";
                 switch (i){
                     case 5:
                         itemPrint += "    ";
