@@ -1,0 +1,1 @@
+The Mario Kart 8 game on switch has a random feature, but it a random assortment out of some pre-picked nintendo assortments. This generator generates the number of times you have to click each time, without a pattern. All using clever boolean math.
