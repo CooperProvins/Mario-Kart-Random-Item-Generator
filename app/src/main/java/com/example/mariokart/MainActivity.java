@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button myButton;
     private TextView myTextView;
+    private ToggleButton myToggle;
+
+    private int maxGenerated = 2;
 
     long randomNumber;
 
@@ -26,26 +30,50 @@ public class MainActivity extends AppCompatActivity {
 
         myTextView = findViewById(R.id.textView2);
         myButton = findViewById(R.id.button);
+        myToggle = findViewById(R.id.toggleButton);
 
-        myButton.setOnClickListener(v -> {
-            randomNumber = (long)(Math.floor(Math.random()*Math.pow(4,22)+1));
-            String itemNumber = binary.encode(randomNumber,4);
-            while (itemNumber.length() < 22){
-                itemNumber += "0";
+        // On = Team Mode
+        // Off = Seperate Mode
+        myToggle.setOnClickListener(v -> {
+            if (myToggle.isChecked()) {
+                maxGenerated = 4;
             }
-            String itemPrint = "";
-            for (int i = 0; i < 22; i++){
-                itemPrint += itemNumber.charAt(i) + " ";
+            else {
+                maxGenerated = 2;
+            }
+            int[] itemArray = new int[22];
+            String itemText = "";
+            for (int i = 0; i < 22; i++) {
+                itemArray[i] = (int)(Math.random()*maxGenerated);
+                itemText += itemArray[i] + " ";
                 switch (i){
                     case 5:
-                        itemPrint += "    ";
+                        itemText += "    ";
                     case 11:
-                        itemPrint += "    ";
+                        itemText += "    ";
                     case 17:
-                        itemPrint += "    ";
+                        itemText += "    ";
                 }
             }
-            myTextView.setText(itemPrint);
+            myTextView.setText(itemText);
+        });
+
+        myButton.setOnClickListener(v -> {
+            int[] itemArray = new int[22];
+            String itemText = "";
+            for (int i = 0; i < 22; i++) {
+                itemArray[i] = (int)(Math.random()*maxGenerated);
+                itemText += itemArray[i] + " ";
+                switch (i){
+                    case 5:
+                        itemText += "    ";
+                    case 11:
+                        itemText += "    ";
+                    case 17:
+                        itemText += "    ";
+                }
+            }
+            myTextView.setText(itemText);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
